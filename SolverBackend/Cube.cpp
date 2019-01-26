@@ -304,7 +304,6 @@ void Cube::R()
 	rotate_z_prime();
 	U();
 	rotate_z();
-		
 }
 
 void Cube::R_prime()

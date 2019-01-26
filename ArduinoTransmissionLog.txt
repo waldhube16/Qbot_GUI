@@ -1,0 +1,3 @@
+Welcome to the serial test app!
+
+Connection established
