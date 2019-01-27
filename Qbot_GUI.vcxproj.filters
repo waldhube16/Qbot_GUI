@@ -17,7 +17,7 @@
       <UniqueIdentifier>{b3bb8c34-4c5b-4c1f-8598-e3008d0a0445}</UniqueIdentifier>
     </Filter>
     <Filter Include="Qbot_Serial">
-      <UniqueIdentifier>{e6364abf-9608-4114-9fee-be7309809a78}</UniqueIdentifier>
+      <UniqueIdentifier>{f2169439-9ec8-49ef-bf1b-e4090f7df0b5}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -78,10 +78,10 @@
     <ClInclude Include="SolverBackend\CubeSimulation.h">
       <Filter>SolverBackend</Filter>
     </ClInclude>
-    <ClInclude Include="Qbot_Serial\SerialClass.h">
+    <ClInclude Include="Qbot_Serial\Qbot_Serial.h">
       <Filter>Qbot_Serial</Filter>
     </ClInclude>
-    <ClInclude Include="Qbot_Serial\Qbot_Serial.h">
+    <ClInclude Include="Qbot_Serial\SerialClass.h">
       <Filter>Qbot_Serial</Filter>
     </ClInclude>
   </ItemGroup>

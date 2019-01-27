@@ -119,9 +119,9 @@ std::string CubeFace::get_Faceval(int i, int j)
 
 }
 
-void CubeFace::set_Faceval(int i, int j, std::string value)
+void CubeFace::set_Faceval(int i, int j, std::string COLOR)
 {
-	face_[i][j] = value;
+	face_[i][j] = COLOR;
 }
 
 

@@ -299,7 +299,7 @@ namespace CppCLR_WinformsProjekt {
 	private: System::Windows::Forms::Panel^  L7;
 	private: System::Windows::Forms::Panel^  L8;
 	private: System::Windows::Forms::Panel^  L9;
-	private: System::Windows::Forms::Button^  button1;
+
 	private: System::Windows::Forms::Button^  btn_R;
 	private: System::Windows::Forms::Button^  btn_U;
 	private: System::Windows::Forms::Button^  btn_F;
@@ -320,7 +320,17 @@ namespace CppCLR_WinformsProjekt {
 	private: System::Windows::Forms::Button^  btn_SendToArduino;
 private: System::Windows::Forms::Button^  btn_Recolor;
 private: System::Windows::Forms::Button^  btn_EndRecolor;
-private: System::Windows::Forms::Button^  btn_SolCubestring;
+
+private: System::Windows::Forms::Button^  btn_scrambleCubeString;
+
+private: System::Windows::Forms::Button^  btn_CmdToArduino;
+private: System::Windows::Forms::ComboBox^  box_CmdForArduino;
+private: System::Windows::Forms::Label^  lbl_ComPort;
+private: System::Windows::Forms::NumericUpDown^  numdd_ComPort;
+
+
+
+
 
 
 
@@ -391,7 +401,6 @@ private: System::Windows::Forms::Button^  btn_SolCubestring;
 			this->L7 = (gcnew System::Windows::Forms::Panel());
 			this->L8 = (gcnew System::Windows::Forms::Panel());
 			this->L9 = (gcnew System::Windows::Forms::Panel());
-			this->button1 = (gcnew System::Windows::Forms::Button());
 			this->btn_R = (gcnew System::Windows::Forms::Button());
 			this->btn_U = (gcnew System::Windows::Forms::Button());
 			this->btn_F = (gcnew System::Windows::Forms::Button());
@@ -411,7 +420,12 @@ private: System::Windows::Forms::Button^  btn_SolCubestring;
 			this->btn_SendToArduino = (gcnew System::Windows::Forms::Button());
 			this->btn_Recolor = (gcnew System::Windows::Forms::Button());
 			this->btn_EndRecolor = (gcnew System::Windows::Forms::Button());
-			this->btn_SolCubestring = (gcnew System::Windows::Forms::Button());
+			this->btn_scrambleCubeString = (gcnew System::Windows::Forms::Button());
+			this->btn_CmdToArduino = (gcnew System::Windows::Forms::Button());
+			this->box_CmdForArduino = (gcnew System::Windows::Forms::ComboBox());
+			this->lbl_ComPort = (gcnew System::Windows::Forms::Label());
+			this->numdd_ComPort = (gcnew System::Windows::Forms::NumericUpDown());
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numdd_ComPort))->BeginInit();
 			this->SuspendLayout();
 			// 
 			// U1
@@ -954,16 +968,6 @@ private: System::Windows::Forms::Button^  btn_SolCubestring;
 			this->L9->TabIndex = 0;
 			this->L9->Click += gcnew System::EventHandler(this, &Form1::ColorablePanel_Click);
 			// 
-			// button1
-			// 
-			this->button1->Location = System::Drawing::Point(24, 42);
-			this->button1->Name = L"button1";
-			this->button1->Size = System::Drawing::Size(99, 24);
-			this->button1->TabIndex = 1;
-			this->button1->Text = L"ApplyDemoString";
-			this->button1->UseVisualStyleBackColor = true;
-			this->button1->Click += gcnew System::EventHandler(this, &Form1::button1_Click_1);
-			// 
 			// btn_R
 			// 
 			this->btn_R->Location = System::Drawing::Point(399, 42);
@@ -1086,7 +1090,7 @@ private: System::Windows::Forms::Button^  btn_SolCubestring;
 			// 
 			// btn_Reset
 			// 
-			this->btn_Reset->Location = System::Drawing::Point(24, 73);
+			this->btn_Reset->Location = System::Drawing::Point(26, 13);
 			this->btn_Reset->Name = L"btn_Reset";
 			this->btn_Reset->Size = System::Drawing::Size(99, 25);
 			this->btn_Reset->TabIndex = 8;
@@ -1096,7 +1100,7 @@ private: System::Windows::Forms::Button^  btn_SolCubestring;
 			// 
 			// btn_GenSolution
 			// 
-			this->btn_GenSolution->Location = System::Drawing::Point(24, 105);
+			this->btn_GenSolution->Location = System::Drawing::Point(26, 45);
 			this->btn_GenSolution->Name = L"btn_GenSolution";
 			this->btn_GenSolution->Size = System::Drawing::Size(120, 23);
 			this->btn_GenSolution->TabIndex = 9;
@@ -1114,11 +1118,11 @@ private: System::Windows::Forms::Button^  btn_SolCubestring;
 			// 
 			// btn_scrambleString
 			// 
-			this->btn_scrambleString->Location = System::Drawing::Point(24, 134);
+			this->btn_scrambleString->Location = System::Drawing::Point(26, 74);
 			this->btn_scrambleString->Name = L"btn_scrambleString";
-			this->btn_scrambleString->Size = System::Drawing::Size(120, 23);
+			this->btn_scrambleString->Size = System::Drawing::Size(153, 23);
 			this->btn_scrambleString->TabIndex = 11;
-			this->btn_scrambleString->Text = L"Scramble from String";
+			this->btn_scrambleString->Text = L"Scramble from Moveset";
 			this->btn_scrambleString->UseVisualStyleBackColor = true;
 			this->btn_scrambleString->Click += gcnew System::EventHandler(this, &Form1::btn_scrambleString_Click);
 			// 
@@ -1152,22 +1156,67 @@ private: System::Windows::Forms::Button^  btn_SolCubestring;
 			this->btn_EndRecolor->UseVisualStyleBackColor = true;
 			this->btn_EndRecolor->Click += gcnew System::EventHandler(this, &Form1::btn_EndRecolor_Click);
 			// 
-			// btn_SolCubestring
+			// btn_scrambleCubeString
 			// 
-			this->btn_SolCubestring->Location = System::Drawing::Point(12, 318);
-			this->btn_SolCubestring->Name = L"btn_SolCubestring";
-			this->btn_SolCubestring->Size = System::Drawing::Size(179, 23);
-			this->btn_SolCubestring->TabIndex = 15;
-			this->btn_SolCubestring->Text = L"Generate Solution from Cubestring";
-			this->btn_SolCubestring->UseVisualStyleBackColor = true;
-			this->btn_SolCubestring->Click += gcnew System::EventHandler(this, &Form1::btn_SolCubestring_Click);
+			this->btn_scrambleCubeString->Location = System::Drawing::Point(26, 104);
+			this->btn_scrambleCubeString->Name = L"btn_scrambleCubeString";
+			this->btn_scrambleCubeString->Size = System::Drawing::Size(153, 23);
+			this->btn_scrambleCubeString->TabIndex = 16;
+			this->btn_scrambleCubeString->Text = L"Scramble from Cubestring";
+			this->btn_scrambleCubeString->UseVisualStyleBackColor = true;
+			this->btn_scrambleCubeString->Click += gcnew System::EventHandler(this, &Form1::btn_scrambleCubeString_Click);
+			// 
+			// btn_CmdToArduino
+			// 
+			this->btn_CmdToArduino->Location = System::Drawing::Point(714, 73);
+			this->btn_CmdToArduino->Name = L"btn_CmdToArduino";
+			this->btn_CmdToArduino->Size = System::Drawing::Size(121, 23);
+			this->btn_CmdToArduino->TabIndex = 18;
+			this->btn_CmdToArduino->Text = L"Send Command";
+			this->btn_CmdToArduino->UseVisualStyleBackColor = true;
+			this->btn_CmdToArduino->Click += gcnew System::EventHandler(this, &Form1::btn_CmdToArduino_Click);
+			// 
+			// box_CmdForArduino
+			// 
+			this->box_CmdForArduino->FormattingEnabled = true;
+			this->box_CmdForArduino->Items->AddRange(gcnew cli::array< System::Object^  >(18) {
+				L"Y0", L"y0", L"X0", L"x0", L"A1", L"a1",
+					L"A2", L"a2", L"A3", L"a3", L"A4", L"a4", L"A5", L"a5", L"A6", L"a6", L">0", L"<0"
+			});
+			this->box_CmdForArduino->Location = System::Drawing::Point(714, 46);
+			this->box_CmdForArduino->Name = L"box_CmdForArduino";
+			this->box_CmdForArduino->Size = System::Drawing::Size(121, 21);
+			this->box_CmdForArduino->TabIndex = 19;
+			// 
+			// lbl_ComPort
+			// 
+			this->lbl_ComPort->AutoSize = true;
+			this->lbl_ComPort->Location = System::Drawing::Point(714, 104);
+			this->lbl_ComPort->Name = L"lbl_ComPort";
+			this->lbl_ComPort->Size = System::Drawing::Size(56, 13);
+			this->lbl_ComPort->TabIndex = 20;
+			this->lbl_ComPort->Text = L"COM-Port:";
+			
+			// 
+			// numdd_ComPort
+			// 
+			this->numdd_ComPort->Location = System::Drawing::Point(776, 102);
+			this->numdd_ComPort->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 255, 0, 0, 0 });
+			this->numdd_ComPort->Name = L"numdd_ComPort";
+			this->numdd_ComPort->Size = System::Drawing::Size(58, 20);
+			this->numdd_ComPort->TabIndex = 21;
+			
 			// 
 			// Form1
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(882, 491);
-			this->Controls->Add(this->btn_SolCubestring);
+			this->Controls->Add(this->numdd_ComPort);
+			this->Controls->Add(this->lbl_ComPort);
+			this->Controls->Add(this->box_CmdForArduino);
+			this->Controls->Add(this->btn_CmdToArduino);
+			this->Controls->Add(this->btn_scrambleCubeString);
 			this->Controls->Add(this->btn_EndRecolor);
 			this->Controls->Add(this->btn_Recolor);
 			this->Controls->Add(this->btn_SendToArduino);
@@ -1187,7 +1236,6 @@ private: System::Windows::Forms::Button^  btn_SolCubestring;
 			this->Controls->Add(this->btn_Ri);
 			this->Controls->Add(this->btn_U);
 			this->Controls->Add(this->btn_R);
-			this->Controls->Add(this->button1);
 			this->Controls->Add(this->D9);
 			this->Controls->Add(this->B9);
 			this->Controls->Add(this->R9);
@@ -1245,6 +1293,7 @@ private: System::Windows::Forms::Button^  btn_SolCubestring;
 			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::FixedToolWindow;
 			this->Name = L"Form1";
 			this->Text = L"Qbot";
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numdd_ComPort))->EndInit();
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
@@ -1252,9 +1301,7 @@ private: System::Windows::Forms::Button^  btn_SolCubestring;
 #pragma endregion
 
 
-private: System::Void button1_Click_1(System::Object^  sender, System::EventArgs^  e) {
-	colorPanelsFromString("DUUBULDBFRBFRRULLLBRDFFFBLURDBFDFDRFRULBLUFDURRBLBDUDL");
-}
+
 
 //Move Buttons
 private: System::Void btn_U_Click(System::Object^  sender, System::EventArgs^  e) {
@@ -1391,7 +1438,16 @@ private: System::Void btn_scrambleString_Click(System::Object^  sender, System::
 
 private: System::Void btn_SendToArduino_Click(System::Object^  sender, System::EventArgs^  e) 
 {
-	int flag = sendStringToArduino();
+	System::String^ text_input;
+	msclr::interop::marshal_context context;
+
+	text_input = txt_SolutionString->Text;
+	std::string textbox_scramble = context.marshal_as<std::string>(text_input);
+	
+	text_input = numdd_ComPort->Text;
+	std::string tx_com_port = context.marshal_as<std::string>(text_input);
+
+	int flag = sendStringToArduino(textbox_scramble, 1, tx_com_port);
 
 	if (flag == 0)
 	{
@@ -1404,6 +1460,10 @@ private: System::Void btn_SendToArduino_Click(System::Object^  sender, System::E
 	else if (flag == -2)
 	{
 		MessageBox::Show("Acknowledge error");
+	}
+	else if (flag == -3)
+	{
+		MessageBox::Show("Connection error");
 	}
 }
 
@@ -1460,7 +1520,6 @@ private: System::Void B5_Click(System::Object^  sender, System::EventArgs^  e) {
 	}
 }
 
-
 private: System::Void ColorablePanel_Click(System::Object^  sender, System::EventArgs^  e) {
 	System::Windows::Forms::Panel^ panel_sender = safe_cast<System::Windows::Forms::Panel^>(sender);
 	changeSpecificPanelColor(panel_sender); 
@@ -1478,31 +1537,65 @@ private: System::Void btn_EndRecolor_Click(System::Object^  sender, System::Even
 	txt_SolutionString->Clear();
 	txt_SolutionString->AppendText(cubestring_converted);
 }
-private: System::Void btn_SolCubestring_Click(System::Object^  sender, System::EventArgs^  e) {
-	
+
+private: System::Void btn_scrambleCubeString_Click(System::Object^  sender, System::EventArgs^  e) {
+	//Test String: 
+	//std::string test_string = "DUUBULDBFRBFRRULLLBRDFFFBLURDBFDFDRFRULBLUFDURRBLBDUDL";
 	System::String^ text_input = txt_SolutionString->Text;
 	msclr::interop::marshal_context context;
-	std::string textbox_string = context.marshal_as<std::string>(text_input); std::string cubestring = Erno.generate_cubestring();
-	//convert from string to char*
-	const char* const_cubestring = textbox_string.c_str();
-
-	int max_moves = 20;
-	long timeout = 3;
-	bool final_solve = 0, first_solve = 1;
-	std::string solution; 
-	if (::solution(const_cubestring, max_moves, timeout, 0, "cache") == NULL)
+	std::string textbox_scramble = context.marshal_as<std::string>(text_input);
+	
+	if(textbox_scramble.length() == 54)
 	{
-		solution = "Cube not solvable!"; 
+		colorPanelsFromString(textbox_scramble);
+		if(Erno.scramble_from_cubestring(textbox_scramble, Erno.ptr_UP_, Erno.ptr_LEFT_, Erno.ptr_FRONT_, Erno.ptr_RIGHT_, Erno.ptr_BACK_, Erno.ptr_DOWN_) == 1)
+		{}
+		else
+		{
+			txt_SolutionString->Clear();
+			txt_SolutionString->AppendText("Could not scramble Cube!");
+		}
 	}
 	else
 	{
-		solution = ::solution(const_cubestring, max_moves, timeout, 0, "cache");
+		txt_SolutionString->Clear();
+		txt_SolutionString->AppendText("Invalid Cubestring!");
 	}
 	
-	System::String^ solutionstring = gcnew String(solution.c_str());
-	txt_SolutionString->Clear();
-	txt_SolutionString->AppendText(solutionstring);
 }
+
+
+private: System::Void btn_CmdToArduino_Click(System::Object^  sender, System::EventArgs^  e) {
+	System::String^ text_input; 
+	msclr::interop::marshal_context context;
+
+	text_input = box_CmdForArduino->Text;
+	std::string tx_cmd = context.marshal_as<std::string>(text_input);
+
+	text_input = numdd_ComPort->Text;
+	std::string tx_com_port = context.marshal_as<std::string>(text_input);
+
+	int flag = sendStringToArduino(tx_cmd, 2, tx_com_port);
+
+	if (flag == 0)
+	{
+		MessageBox::Show("Transmission successful!");
+	}
+	else if (flag == -1)
+	{
+		MessageBox::Show("Transmission error");
+	}
+	else if (flag == -2)
+	{
+		MessageBox::Show("Acknowledge error");
+	}
+	else if (flag == -3)
+	{
+		MessageBox::Show("Connection error");
+	}
+}
+
+
 };
 
 	

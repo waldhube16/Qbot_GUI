@@ -15,6 +15,7 @@ public:
 	
 	void print_cube();
 	std::string generate_cubestring();
+	bool scramble_from_cubestring(std::string cubes_tring, CubeFace * ptr_UP_, CubeFace * ptr_LEFT_, CubeFace * ptr_FRONT_, CubeFace * ptr_RIGHT_, CubeFace * ptr_BACK_, CubeFace * ptr_DOWN_);
 	bool scramble_from_string(std::string);
 	void R();
 	void R_prime();

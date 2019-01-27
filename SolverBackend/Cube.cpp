@@ -202,7 +202,42 @@ std::string Cube::generate_cubestring()
 	std::string Cube_string = Up_string + Right_string + Front_string + Down_string + Left_string + Back_string;
 	return Cube_string; 
 }
+bool Cube::scramble_from_cubestring(std::string cube_string, CubeFace * ptr_UP_, CubeFace * ptr_LEFT_, CubeFace * ptr_FRONT_, CubeFace * ptr_RIGHT_, CubeFace * ptr_BACK_, CubeFace * ptr_DOWN_)
+{
+	//cube_string = "DUUBULDBFRBFRRULLLBRDFFFBLURDBFDFDRFRULBLUFDURRBLBDUDL"; 
+	auto i = 0;
+	auto sub_i = 0; 
+	//order important
+	CubeFace* Faces[] = { ptr_UP_, ptr_RIGHT_, ptr_FRONT_, ptr_DOWN_, ptr_LEFT_, ptr_BACK_ };
 
+	for (i = 0; i < 54; i = i+9)
+	{
+		if(i > 0)
+		{
+			sub_i = i / 9;
+		}
+		else if (i == 0)
+		{
+			sub_i = 0; 
+		}
+
+		Faces[sub_i]->face_[0][0] = cube_string[i];
+		Faces[sub_i]->face_[0][1] = cube_string[i+1];
+		Faces[sub_i]->face_[0][2] = cube_string[i+2];
+		Faces[sub_i]->face_[1][0] = cube_string[i+3];
+		Faces[sub_i]->face_[1][1] = cube_string[i+4];
+		Faces[sub_i]->face_[1][2] = cube_string[i+5];
+		Faces[sub_i]->face_[2][0] = cube_string[i+6];
+		Faces[sub_i]->face_[2][1] = cube_string[i+7];
+		Faces[sub_i]->face_[2][2] = cube_string[i+8];
+	}
+	import_all_faces_to_facemap(ptr_UP_, ptr_LEFT_, ptr_FRONT_, ptr_RIGHT_, ptr_BACK_, ptr_DOWN_);
+	
+	if (generate_cubestring() == cube_string)
+		return 1; //success
+	else
+		return 0; //failure
+}
 bool Cube::scramble_from_string(std::string scramble_string)
 {
 	//reset the cube
