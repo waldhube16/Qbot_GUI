@@ -1181,12 +1181,13 @@ private: System::Windows::Forms::NumericUpDown^  numdd_ComPort;
 			this->box_CmdForArduino->FormattingEnabled = true;
 			this->box_CmdForArduino->Items->AddRange(gcnew cli::array< System::Object^  >(18) {
 				L"Y0", L"y0", L"X0", L"x0", L"A1", L"a1",
-					L"A2", L"a2", L"A3", L"a3", L"A4", L"a4", L"A5", L"a5", L"A6", L"a6", L">0", L"<0"
+					L"A2", L"a2", L"A3", L"a3", L"A4", L"a4", L"A5", L"a5", L"A6", L"a6", L"E1", L"E2"
 			});
 			this->box_CmdForArduino->Location = System::Drawing::Point(714, 46);
 			this->box_CmdForArduino->Name = L"box_CmdForArduino";
 			this->box_CmdForArduino->Size = System::Drawing::Size(121, 21);
 			this->box_CmdForArduino->TabIndex = 19;
+			this->box_CmdForArduino->Text = L"Y0";
 			// 
 			// lbl_ComPort
 			// 
@@ -1196,7 +1197,6 @@ private: System::Windows::Forms::NumericUpDown^  numdd_ComPort;
 			this->lbl_ComPort->Size = System::Drawing::Size(56, 13);
 			this->lbl_ComPort->TabIndex = 20;
 			this->lbl_ComPort->Text = L"COM-Port:";
-			
 			// 
 			// numdd_ComPort
 			// 
@@ -1205,7 +1205,6 @@ private: System::Windows::Forms::NumericUpDown^  numdd_ComPort;
 			this->numdd_ComPort->Name = L"numdd_ComPort";
 			this->numdd_ComPort->Size = System::Drawing::Size(58, 20);
 			this->numdd_ComPort->TabIndex = 21;
-			
 			// 
 			// Form1
 			// 
@@ -1536,6 +1535,10 @@ private: System::Void btn_EndRecolor_Click(System::Object^  sender, System::Even
 	System::String^ cubestring_converted = gcnew String(cubestring.c_str());
 	txt_SolutionString->Clear();
 	txt_SolutionString->AppendText(cubestring_converted);
+
+	//scramble cube model
+	Erno.scramble_from_cubestring(cubestring, Erno.ptr_UP_, Erno.ptr_LEFT_, Erno.ptr_FRONT_, Erno.ptr_RIGHT_, Erno.ptr_BACK_, Erno.ptr_DOWN_);
+	
 }
 
 private: System::Void btn_scrambleCubeString_Click(System::Object^  sender, System::EventArgs^  e) {
